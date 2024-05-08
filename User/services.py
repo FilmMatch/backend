@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from fastapi import HTTPException
 
 from User import schemas
 
@@ -26,4 +27,13 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
+    return db_user
+
+
+def delete_user(db: Session, user_id: int):
+    db_user = db.query(UserModel).filter(UserModel.id == user_id).first()
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    db.delete(db_user)
+    db.commit()
     return db_user

@@ -15,7 +15,7 @@ def get_db():
         db.close()
 
 
-@router.post("/subUser/", response_model=schemas.SubUserCreate)
+@router.post("/subUser/", response_model=schemas.SubUserBase)
 def create_subuser(subUser: schemas.SubUserCreate, db: Session = Depends(get_db)):
     return services.create_subuser(db=db, subUser=subUser)
 
