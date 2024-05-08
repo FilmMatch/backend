@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, String, Boolean, func, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, func, DateTime, Enum as SQLAlchemyEnum
 from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime
 
+from Enums.UserType import UserType
 from database import Base
 
 
