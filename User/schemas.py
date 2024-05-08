@@ -1,9 +1,9 @@
 from pydantic import BaseModel, ConfigDict
 
-from SubUser.model import SubUser
 
 from typing import List
 
+from SubUser.schemas import SubUserBase
 
 
 class UserBase(BaseModel):
@@ -30,6 +30,6 @@ class User(UserBase):
     surname1: str
     surname2: str
     phone: str
-    # subUsers: list
+    subUsers: List[SubUserBase]
 
 
