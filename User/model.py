@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 from database import Base
 
@@ -16,6 +16,7 @@ class User(Base):
     hashed_password = Column(String(16))
     is_active = Column(Boolean, default=True)
     age = Column(Integer)
+    subUsers = relationship("SubUser", back_populates="user")
 
 
 

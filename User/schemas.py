@@ -1,5 +1,11 @@
 from pydantic import BaseModel, ConfigDict
 
+from SubUser.model import SubUser
+
+from typing import List
+
+
+
 class UserBase(BaseModel):
     email: str
 
@@ -24,5 +30,6 @@ class User(UserBase):
     surname1: str
     surname2: str
     phone: str
+    # subUsers: list
 
 
