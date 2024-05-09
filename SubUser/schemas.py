@@ -7,6 +7,7 @@ from Enums.UserType import UserType
 
 
 class SubUserBase(BaseModel):
+    id: int
     name: str
     user_id: int
     created_at: datetime
