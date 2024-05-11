@@ -18,7 +18,7 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     # print("test")
     return db.query(UserModel).offset(skip).limit(limit).all()
 
-
+# test
 def create_user(db: Session, user: schemas.UserCreate):
     fake_hashed_password = user.password + "notreallyhashed"
     # db_user = UserModel.User(**User.dict() is_active=False)
