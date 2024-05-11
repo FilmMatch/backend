@@ -15,6 +15,8 @@ def get_db():
         db.close()
 
 
+
+
 @router.post("/subUser/", response_model=schemas.SubUserBase)
 def create_subuser(subUser: schemas.SubUserCreate, db: Session = Depends(get_db)):
     return services.create_subuser(db=db, subUser=subUser)
@@ -25,5 +27,7 @@ def create_subuser(user_id: int, db: Session = Depends(get_db)):
 
 @router.delete("/subUser/{sub_user}", response_model=schemas.SubUserBase)
 def create_subuser(sub_user: int, db: Session = Depends(get_db)):
-    return services.delete_user(db=db, sub_user_id=sub_user)
+    return services.delete_subuser(db=db, sub_user_id=sub_user)
+
+
 

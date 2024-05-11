@@ -15,11 +15,16 @@ def create_subuser(db: Session, subUser: schemas.SubUserCreate):
 def get_subUsers(db: Session, user_id: int):
     return db.query(SubUser).filter(SubUser.user_id == user_id).all()
 
-def delete_user(db: Session, sub_user_id: int):
+def delete_subuser(db: Session, sub_user_id: int):
     db_user = db.query(SubUser).filter(SubUser.id == sub_user_id).first()
     if db_user is None:
         raise HTTPException(status_code=404, detail="Item not found")
     db.delete(db_user)
     db.commit()
     return db_user
+
+# update _subuser
+#
+
+
 
