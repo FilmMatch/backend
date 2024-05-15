@@ -7,30 +7,37 @@ from database import SessionLocal
 
 router = APIRouter()
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.post("/users/", response_model=schemas.User)
-def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+def create_user(user: schemas.UserCreate):
     # db_user = services.get_user_by_email(db, email=user.email)
     #if db_user:
         # raise HTTPException(status_code=400, detail="Email already registered")
-    return services.create_user(db=db, user=user)
+    return services.create_user(user=user)
 
 
 @router.get("/users/", response_model=list[schemas.User])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    users = services.get_users(db, skip=skip, limit=limit)
+def read_users(skip: int = 0, limit: int = 100):
+    users = services.get_users(skip=skip, limit=limit)
     return users
 
+@router.get("/users/{user_id}", response_model=schemas.User)
+def get_user_by_id(user_id: int):
+    user = services.get_user_by_id(user_id=user_id)
+    return user
+
+
 @router.delete("/users/{user_id}", response_model=schemas.User)
-def create_user(user_id: int, db: Session = Depends(get_db)):
+def create_user(user_id: int):
     # db_user = services.get_user_by_email(db, email=user.email)
     #if db_user:
         # raise HTTPException(status_code=400, detail="Email already registered")
-    return services.delete_user(db=db, user_id=user_id)
+    return services.delete_user(user_id=user_id)
+
+@router.post("/login/", response_model=schemas.User)
+def create_user(user: schemas.UserLogin):
+    # db_user = services.get_user_by_email(db, email=user.email)
+    #if db_user:
+        # raise HTTPException(status_code=400, detail="Email already registered")
+    return services.login(email=user.email, password=user.password)
