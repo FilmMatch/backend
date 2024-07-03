@@ -3,7 +3,7 @@ from typing import Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
 from sqlalchemy import MetaData
-import routes
+import routers as routes
 from Configurations import Configuration
 from fastapi_sqlalchemy import DBSessionMiddleware 
 from fastapi.middleware.cors import CORSMiddleware

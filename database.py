@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-SQLALCHEMY_DATABASE_URL = "mysql://admin:1234@127.0.0.1:3306/filmatch"
+SQLALCHEMY_DATABASE_URL = "mysql://root:1234@127.0.0.1:3306/filmatch"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={}
